@@ -3,7 +3,6 @@ import os
 
 ARQUIVO = "estoque.csv"
 
-# Função para inicializar o estoque
 def inicializar_estoque():
     if not os.path.isfile(ARQUIVO):
         with open(ARQUIVO, 'w', newline='', encoding='utf-8') as f:
@@ -11,7 +10,6 @@ def inicializar_estoque():
             escritor.writerow(["ID", "Nome", "Quantidade"])
 
 
-# Carregar estoque do arquivo
 def carregar_estoque():
     estoque = {}
     if os.path.isfile(ARQUIVO):
@@ -25,7 +23,6 @@ def carregar_estoque():
     return estoque
 
 
-# Salvar estoque no arquivo
 def salvar_estoque(estoque):
     with open(ARQUIVO, 'w', newline='', encoding='utf-8') as f:
         escritor = csv.writer(f)
@@ -34,7 +31,6 @@ def salvar_estoque(estoque):
             escritor.writerow([id_produto, dados["nome"], dados["quantidade"]])
 
 
-# Mostrar o menu
 def mostrar_menu():
     print("\n===== Sistema de Estoque SafePlace =====")
     print("1. Adicionar produto")
@@ -45,7 +41,6 @@ def mostrar_menu():
     print("6. Sair")
 
 
-# Funções principais
 def adicionar_produto(estoque):
     id_produto = input("ID do produto: ")
     if id_produto in estoque:
@@ -112,7 +107,6 @@ def listar_produtos(estoque):
             print(f"{id_produto:<10}{dados['nome']:<20}{dados['quantidade']:<10}")
 
 
-# Programa principal
 def main():
     inicializar_estoque()
     estoque = carregar_estoque()
